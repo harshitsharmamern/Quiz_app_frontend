@@ -6,19 +6,21 @@ import reportWebVitals from './reportWebVitals';
 ///////////
 import { Provider } from 'react-redux';
 // import store from '../src/components/todoapp/Redux/Store';
-import store from './components/todoapp/Redux/Store';
+// import store from './components/todoapp/Redux/Store';
 
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-    </Provider>,
+  <React.StrictMode>
 
-  {/* </React.StrictMode> */}
+  <App />
+  
+
+ 
+
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
