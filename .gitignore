@@ -7,8 +7,8 @@ node_modules
 .pnp.js
 
 # testing
-coverage
-src/components/todoapp
+/coverage
+
 # production
 /build
 
