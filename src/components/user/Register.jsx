@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './user.css'; // Import your CSS file
-
+import { baseUrl } from '../../server_call';
 
 
 const Register = () => {
@@ -25,11 +25,16 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(userDetails.username.length<3){
+      return toast.warn("username must be greater than 3 " );
+ 
+    }
+
     try {
-      const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
-      
+      // const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
+      // const baseUrl = 'http://localhost:5000/api'
       // const baseUrl = process.env.REACT_APP_BASE_URL;
-      const response = await fetch(`${baseUrl}/user/signup`, {
+      const response = await fetch(`${baseUrl}/api/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -40,21 +45,55 @@ const Register = () => {
           password: userDetails.password
         })
       });
-console.log(userDetails);
+      console.log(userDetails);
       const result = await response.json();
-console.log({result});
+      console.log({ result });
       if (result.status) {
         // localStorage.setItem("auth-token", result.auth_token);
         toast.success('Signup successful!');
         Navigate("/signin");
       } else {
-        toast.warn("Signup failed");
+        toast.warn("singup err : " + result.msg + "," + "change username please" );
       }
     } catch (error) {
       toast.warn("Error occurred");
       console.log({ error, msg: "Error in catch" });
     }
   };
+  
+  useEffect(() => {
+    // console.log( {token : localStorage.getItem("auth-toke")} )
+     const loginfun = async () => {
+       const server = `${baseUrl}/api/user/home`;
+ 
+       const response = await fetch(
+         server,
+         {
+           method: "GET",
+           headers: {
+             "Content-Type": "application/json",
+             "auth-token": localStorage.getItem("auth-token"),
+           },
+         }
+       );
+      //  console.log("you enter in home", response);
+ 
+       const result = await response.json();
+       console.log({result : result});
+       if (result.status) {
+        Navigate('/user/home')
+        //  console.log("result status is comming");
+        //  console.log({userdata : result.home_data});
+        //  setuserdata( result.home_data)
+       } else {
+         console.log("you are not allowed to this page until you login");
+         Navigate("/")
+       }
+     }
+ 
+ 
+     loginfun()
+   }, [])
 
   return (
     <div className="register-container">
@@ -96,7 +135,7 @@ console.log({result});
       <br />
       <p>Already have an account? <a href="/signin">Sign in</a></p>
       <ToastContainer />
-      
+
     </div>
   );
 };

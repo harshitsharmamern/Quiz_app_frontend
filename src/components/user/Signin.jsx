@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import {baseUrl} from '../../server_call'
 import 'react-toastify/dist/ReactToastify.css';
 import {
   MDBContainer,
@@ -10,11 +11,12 @@ import {
   MDBIcon
 }
   from 'mdb-react-ui-kit';
-import './user.css'
+  import './user.css'
 
-
-const Signin = () => {
-  const Navigate = useNavigate();
+  
+  const Signin = () => {
+    // console.log(baseUrl);
+    const Navigate = useNavigate();
 
   const [userdetails, setuserdetails] = useState({
     username: '',
@@ -27,17 +29,17 @@ const Signin = () => {
       [e.target.name]: e.target.value,
     });
   };
-
   // const baseUrl = 'http://localhost:5000/api';
-  const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
+
+  // const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
 
   // const baseUrl = process.env.REACT_APP_BASE_URL;
-
+  // const baseUrl = 'http://localhost:5000'
   const handlesubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
-      const response = await fetch(`${baseUrl}/user/signin`, {
+      const response = await fetch(`${baseUrl}/api/user/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,12 +73,15 @@ const Signin = () => {
         Navigate('/user/home');
       } else {
         // toast('Signin unsuccessful!');
+        console.log("kuch gadbad");
         toast.warn(result.msg, {
           autoClose: 2000,
           pauseOnHover: false,
         });
       }
     } catch (error) {
+      // console.log(error);
+
       console.log({ error });
       // toast('Signin unsuccessful!');
 

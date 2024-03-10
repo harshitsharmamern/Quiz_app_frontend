@@ -1,11 +1,14 @@
 import Questions from '../Question_add/QuestionBank';
-import { React, useContext, useState } from 'react';
+import { React, useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../Quizcontext/QuizContextProvider';
 import Clock from '../Question_add/Clock';
+import { baseUrl } from '../../../server_call';
+import { useNavigate, useParams } from 'react-router-dom';
+import {  useStateQuizAnsArray } from './QuizQuestionContext';
 
 
 
-const Box = ({ question_data, prevarr, setarray,currentque,handlesubmit}) => {
+const Box = ({ question_data,setarray, currentque,handlesubmit,prevarr}) => {
     const [ans_select, set_ans_select] = useState("")
     
     const handleOptionChange = (que_id,ansget,op) => {
@@ -22,14 +25,17 @@ const Box = ({ question_data, prevarr, setarray,currentque,handlesubmit}) => {
     };
     // console.log({arr : prevarr,state : currentque});
     // console.log({msg: prevarr.length>currentque && prevarr[currentque]});
-    console.log(prevarr);
+    // console.log(prevarr);
+    // console.log({box : question_data.question});
     return (
       <>
       {/* <Clock */}
              <Clock handlesubmit={handlesubmit}/>
+             {/* <Clock /> */}
+
 
         <div className='EK_question_dikhana_hai' key={currentque}>
-          <div className="question_name">{currentque+1}{question_data.question}</div>
+          <div className="question_name">{currentque+1} {")        "}{question_data.question}</div>
           <div className="options_name">
             <div
               className={`option_hai
@@ -79,6 +85,7 @@ const Box = ({ question_data, prevarr, setarray,currentque,handlesubmit}) => {
             >
               {question_data.options.op4}
             </div>
+          
           </div>
         </div>
 
@@ -87,24 +94,73 @@ const Box = ({ question_data, prevarr, setarray,currentque,handlesubmit}) => {
       
 }
 
-const QuestionList = ({prevarr,setarray,handlesubmit}) => {
+const QuestionList = () => {
     // const [resultArray, setresultArray] =  useState([])
-    const { Questionbank_q,setQuizScore, currentque, setcurrentque } = useContext(QuizContext);
+    // const { Questionbank_q,setQuizScore, currentque, setcurrentque } = useContext(QuizContext);
 // console.log(QuizState.score);
-// console.log(Quizscore);
+const [currentque, setcurrentque] = useState(0);  //question number state
 
-  // console.log({queare : Questionbank_q});
+const [Questionbank,setQuestionbank] = useState([]);
 
+const {quizid} = useParams()
+const fetchData = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/auth/quiz/${quizid}/questions`);
+    const  res = await response.json();
+    console.log({res});
+    const question = await res.questions.questions
+    setQuestionbank(question);
+    
+  } catch (error) {
+    console.error('Error fetching quiz questions:', error);
+  }
+};
+useEffect(() => {
+  // setcurrentque(0)
+  fetchData();
+  const visitedResultPage = localStorage.getItem('visitedResultPage');
+  if (visitedResultPage) {
+    // Navigate to the home page
+    Navigate('/user/home');
+    // Remove the flag from local storage
+    localStorage.removeItem('visitedResultPage');
+  }
+}, []);
+const Navigate = useNavigate()
+function handlesubmit(){
+  localStorage.setItem('myArray', JSON.stringify(prevarr));
+
+    Navigate(`/${quizid}/user-result`)
+}
+
+// const [prevarr, setarray] = useState([])
+// const {prevarr, setarray} = useContext(QuizQuestionContext)
+// const prearrstate = useContext(QuizQuestionContext)
+const {prevarr, setarray } = useStateQuizAnsArray()
+// console.log(prearrstate);
+console.log(prevarr);
+  // console.log({quizfirstquestion : Questionbank});
     return (
         <>
-          
+            <div className="container" style={{}}>
+          {Questionbank.length>0 &&
+            ( <>        
+
             <Box
-            question_data={Questionbank_q[currentque]}
+            question_data= {Questionbank[currentque]}
+            setarray= {setarray}
             prevarr={prevarr}
-            setarray={setarray}
+            // Questionbank={Questionbank}
+
+            // prevarr={prevarr}
+            // setarray={setarray}
             currentque = {currentque}
-            handlesubmit={handlesubmit}
+            // handlesubmit={handlesubmit}
              />
+            
+             </>
+)
+                 }
             <div className='is_mai_prev_next_btn_hai' >
 
                 {currentque == 0 ? <div> prev</div> :
@@ -114,7 +170,7 @@ const QuestionList = ({prevarr,setarray,handlesubmit}) => {
                         prev
                     </div>}
 
-                {currentque == Questionbank_q.length - 1 ? <div> next</div> :
+                {currentque == Questionbank.length - 1 ? <div> next</div> :
                     <div className='is_mai_prev_next_btn_hai_next'
                         onClick={() => {
                             setcurrentque(currentque + 1)
@@ -122,6 +178,13 @@ const QuestionList = ({prevarr,setarray,handlesubmit}) => {
                         }
                     >next</div>}
             </div>
+
+              </div>
+            <div onClick={handlesubmit} className='container YEh_hai_sumbit_button'>
+                <h4>
+                  submit
+                </h4>
+              </div>
         </>
     )
 }

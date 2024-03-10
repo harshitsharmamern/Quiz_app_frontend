@@ -6,7 +6,7 @@ import AllQuiz from '../HomeComponent/AllQuiz';
 import LeaderBoard from '../HomeComponent/LeaderBoard';
 import HomeQuizComponent from '../HomeComponent/HomeQuizComponent';
 import {UserContext} from './usercontext/UserContext';
-import User_profile from './User_profile';
+// import User_profile from './User_profile';
 
 
 const Home = () => {
@@ -54,9 +54,9 @@ const Home = () => {
 
 
     <Navbar />
-
+    {/* ///All quiz data show karega + leaderboard */}
     <HomeQuizComponent/>
-<User_profile/>
+{/* <User_profile/> */}
     </UserContext>
 
 

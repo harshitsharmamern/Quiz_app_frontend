@@ -23,7 +23,6 @@ const Quiz_layout = () => {
       <QuizContextProvider>
         
         <div className="Quiz_layout_component">
-          <SlideBar />
           <QuizComponent  />
           
         </div>

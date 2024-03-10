@@ -1,5 +1,6 @@
 import React, { createContext, useState,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { baseUrl } from '../../../server_call';
 
 // Create a context
 const QuizContext = createContext();
@@ -10,16 +11,25 @@ const QuizContextProvider = ({ children }) => {
 
   const { quizid } = useParams();
  
-
+const [onequizdetail,setonequizdetails] = useState({
+  topic : "",
+  syllabus : ""
+})
   useEffect(() => {
     // Define an asynchronous function inside the useEffect
     const fetchData = async () => {
       try {
-        const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
-
-        const response = await fetch(`${baseUrl}/auth/quiz/${quizid}/questions`);
-        const { questions } = await response.json();
-        setQuestionbank(questions);
+        // const baseUrl = 'https://quiz-app-backend-g0rh.onrender.com/api';
+// baseUrl
+        const response = await fetch(`${baseUrl}/api/auth/quiz/${quizid}/questions`);
+        const  res = await response.json();
+        // console.log({res});
+        setQuestionbank(res.questions.questions);
+        // settopic(res.questions.quizName)
+        setonequizdetails({
+          topic : res.questions.quizName ,
+          syllabus : res.questions.topic
+        })
         // console.log('Questions for quiz:', questions);
         // Handle the questions as needed
       } catch (error) {
@@ -49,8 +59,12 @@ const QuizContextProvider = ({ children }) => {
   //     score: newScore,
   //   }));
   // };
-  const Questionbank_q = Questionbank.questions
+  console.log({Questionbank,onequizdetail});
+  const Questionbank_q = Questionbank
+  console.log({Questionbank_q, component : "quizprovider"})
   const contextValue = {
+    onequizdetail,
+    Questionbank,
     Questionbank_q,
     QuizScore, setQuizScore,
     currentque, setcurrentque,
@@ -62,7 +76,6 @@ const QuizContextProvider = ({ children }) => {
   return (
     <QuizContext.Provider value={contextValue}>
       
-      {QuizScore}
       {children}
     </QuizContext.Provider>
   );

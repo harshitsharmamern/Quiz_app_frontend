@@ -1,12 +1,13 @@
 import React from 'react';
-
+import { baseUrl } from '../../server_call';
 const QuizCard = ({handleeditparent, admin, quiz }) => {
 
+    // baseUrl
     const handledelete = async(id) => {
         console.log(`delete ${id}`);
-        const server = 'https://quiz-app-backend-g0rh.onrender.com'
-
-        const url = `${server}/api/auth/delete/quiz/${id}`
+        // const server = 'https://quiz-app-backend-g0rh.onrender.com'
+        
+        const url = `${baseUrl}/api/auth/delete/quiz/${id}`
         // const response = await fetch('http://localhost:5000/api/auth/All_quiz'); // Adjust the API endpoint accordingly
 
         const res = await fetch(`${url}`, {
@@ -27,6 +28,10 @@ const QuizCard = ({handleeditparent, admin, quiz }) => {
     //     console.log(data);
     //     // console.log(data.data);
     // }
+    function handleendterquiz(){
+        // localStorage.setItem('quiz_start_btn_state',  false );
+        // quiz_start_btn_state
+    }
     return (
         <>
             {
@@ -41,6 +46,7 @@ const QuizCard = ({handleeditparent, admin, quiz }) => {
                         </p>
                         <div className="button_ko_wrap_krna_hai mt-3 ">
 
+                            
                             <button
                                 onClick={() => handledelete(quiz._id)}
 
@@ -63,7 +69,8 @@ const QuizCard = ({handleeditparent, admin, quiz }) => {
                                 {quiz.topic}
                                 <span>No. of questions: {quiz.questions.length}</span>
                             </p>
-                            <a href={`/Quiz/${quiz._id}`} className="card-link">Give Quiz</a>
+
+                            <a href={`/Quiz/${quiz._id}`} onClick={handleendterquiz} className="card-link">Give Quiz</a>
                             <a href="#" className="card-link">Practice</a>
                         </div>
                     </div>

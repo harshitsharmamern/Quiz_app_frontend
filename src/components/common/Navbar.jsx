@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import {
-        MDBContainer,
-        MDBNavbar,
-        MDBNavbarBrand,
-        MDBNavbarToggler,
-        MDBNavbarNav,
-        MDBNavbarItem,
-        MDBNavbarLink,
-        MDBCollapse
-      } from 'mdb-react-ui-kit';
+import { UserContextProvider } from '../user/usercontext/UserContext';
+
 
 const Navbar = () => {
         const [openNav, setOpenNav] = useState(false);
-
+        const userdata = useContext(UserContextProvider)
         const Navigate = useNavigate();
 
         const hangellogout =async()=>{
@@ -26,9 +17,11 @@ const Navbar = () => {
         const hadle_user_profile_btn=()=>{
           Navigate('/user-profile');
         }
+       console.log({userdata});
+        // console.log({user_data_nav : user_data_nav.userdata});
   return (
     <>
-        
+   
         {/* <Link to="/home" className="navbar-link" >
                 Home
         </Link>
@@ -44,10 +37,11 @@ const Navbar = () => {
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class=" navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -67,18 +61,25 @@ const Navbar = () => {
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <button onClick={hangellogout} className='btn btn-danger'> Logout </button>
+          
         </li>
+      <div className=" btn  user-profile-btn">
+        <button className='btn-primary' onClick={hadle_user_profile_btn}> 
+          user profile
+
+        </button>
+        <div style={{ marginTop: '10px', fontWeight: 'bold' }}>
+
+         {userdata.userdata && userdata.userdata.fname} 
+          {/* {userdata.userdata.username} */}
+        </div>
+      </div>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <div className="user-profile-btn">
-        <button onClick={hadle_user_profile_btn}> 
-          user profile
-        </button>
-      </div>
     </div>
   </div>
 </nav>
