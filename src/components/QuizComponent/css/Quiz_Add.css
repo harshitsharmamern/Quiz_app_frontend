@@ -1,0 +1,149 @@
+.Quiz_name{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Adjust width as needed */
+    height: 50px;
+    /* position: absolute; */
+    /* left: 10px; */
+    /* gap: 20px; */
+}
+.Quiz_name h6{
+    width: 20%;
+    /* background-color: chartreuse; */
+}
+.input-field {
+    /* background-color: darkolivegreen; */
+    width: 100%; /* Adjust width as needed */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    border: none; /* Remove border */
+    border-bottom: 2px solid #ccc; /* Add underline */
+    outline: none; 
+}
+.container{
+    width: 100%;
+    text-align: center; 
+    /* background-color: blueviolet; */
+
+}
+.Add_quiz_heading{
+    display: inline-block; /* Make h2 behave like an inline block */
+    margin: 0; 
+    font-size: 20px;
+    text-underline-offset: 4px; /* Adjust the distance between text and underline */
+    /* background-color: burlywood; */
+    /* border: 1 px solid black; */
+}
+
+
+
+.Adding_quetion{
+    /* background-color: brown; */
+    padding: 10px;
+}
+
+.Question_field{
+    background-color: aquamarine;
+}
+.first-question{
+    display: flex;
+    position: relative;
+    /* background-color: red; */
+    align-items: center;
+}
+.first-question h6{ 
+    margin: 10px;
+    position: absolute;
+    top: 10px;
+    padding: 10px;
+    /* background-color: aquamarine; */
+    /* width: 100%; */
+    /* font-size: 18px; */
+} 
+.Question_input_box {
+    position: relative;
+    /* background-color: blue; */
+    border : none;
+    border-radius: 20px ;
+    background-color: #f3e5e5;
+    min-width: 60vw;
+    min-height: 60px;
+    margin: 10px 20px;
+    margin-left: 150px;
+    max-width: 100vw ; /* Make the textarea full-width */
+    /* height: 200px; Adjust the height as needed */
+    /* resize: vertical; Allow vertical resizing */
+    /* Add any other styling properties here */
+}
+.option-box{
+    background-color: blueviolet;
+
+    padding: 10px;
+}
+
+.Adding_options{
+    padding: 5px;
+
+    background-color: chartreuse;
+    display: flex;
+    gap: 30px;
+}
+.Option_input-field{
+    width: 80%;
+    padding: 10px;
+}
+
+.choose-answer{
+    display: flex;
+    gap: 30px;
+}
+
+
+
+.first-container{
+    display: flex;
+
+}
+
+.Add_Quiz{
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding around text */
+    min-width: 20px;
+    min-height: 10px;
+    border: none; /* Remove border */
+    border-radius: 50%; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+    font-size: 16px; /* Font size */
+}
+
+.button-form{
+
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.first-btnn button,
+.second-btn button {
+    border: none;
+    background-color: aquamarine;
+    border-radius: 20px;
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Apply styles on hover */
+
+
+.first-btn-open button{
+    background-color: rgb(244, 0, 0); /* Change background color on hover */
+
+}
+
+.Add_Quiz:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
+

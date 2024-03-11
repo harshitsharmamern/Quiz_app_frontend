@@ -101,7 +101,7 @@ import {
           name="username"
           onChange={handlechange}
           value={userdetails.username}
-          wrapperClass='mb-4' label='Email address' id='form1' />
+          wrapperClass='mb-4' label='Username' id='form1' />
 
 
         <MDBInput

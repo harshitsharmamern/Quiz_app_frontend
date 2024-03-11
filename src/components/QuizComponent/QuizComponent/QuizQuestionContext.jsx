@@ -5,7 +5,7 @@ import { baseUrl } from '../../../server_call';
 const QuizContext = createContext();
 export const QuizQuestionContext = ({ children }) => {
   const [prevarr, setarray] = useState([])
-  
+
   useEffect(() => {
     const storedValue = localStorage.getItem('myArray');
     if (storedValue) {

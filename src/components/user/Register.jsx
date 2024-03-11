@@ -107,6 +107,7 @@ const Register = () => {
             name="fname"
             onChange={handleChange}
             value={userDetails.fname}
+            placeholder='abhishek jain'
             required
           />
         </div>
@@ -117,6 +118,7 @@ const Register = () => {
             name="username"
             onChange={handleChange}
             value={userDetails.username}
+            placeholder='Abhishek_123'
             required
           />
         </div>

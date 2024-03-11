@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './Dashboard.css'
+import '../QuizComponent/css/Dashboard.css'
 import QuizCard from './QuizCard'
 import { baseUrl } from '../../server_call';
 import { UserContext, UserContextProvider } from '../user/usercontext/UserContext';
@@ -26,6 +26,7 @@ const AllQuiz = () => {
 console.log({quizData});
   return (
     <>
+    
        <div className='All_Quiz_dashboard'>
            <div className="Quizcard_grid">
            { quizData.map((quiz,index) => (

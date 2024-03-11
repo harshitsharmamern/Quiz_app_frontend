@@ -1,98 +1,98 @@
 
 .container {
-    width: 60%; /* Adjust the width of the box as needed */
-    margin: 0 10%;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  .number_List {
-    margin-left: 0.005%;
-    position: relative;
-  }
+  width: 60%; /* Adjust the width of the box as needed */
+  margin: 0 10%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.number_List {
+  margin-left: 0.005%;
+  position: relative;
+}
+
+.number_List::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px; /* Adjust the width of the vertical line as needed */
+  background-color: #000; /* Adjust the color of the vertical line */
+  margin-left: -0.5%; /* Half of the margin to keep the line centered */
+}
+
+.number_List > div {
+  display: block;
+  margin-bottom: 10px; /* Adjust the margin between numbers as needed */
+}
+
+.Quiz_layout_component{
+  margin: 0;
+  background-color: aqua;
+}
+.container{
+  border: 5px solid #000;
+}
+
+.YEh_hai_sumbit_button{
+  min-height: 2%;
+  background-color: rgb(229, 229, 237);
+  align-items: center;
+  color: rgb(16, 15, 15);
+  border: 4px solid black;
+}
+h4{
+  /* border: 4px solid rgb(214, 9, 9); */
   
-  .number_List::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px; /* Adjust the width of the vertical line as needed */
-    background-color: #000; /* Adjust the color of the vertical line */
-    margin-left: -0.5%; /* Half of the margin to keep the line centered */
-  }
-  
-  .number_List > div {
-    display: block;
-    margin-bottom: 10px; /* Adjust the margin between numbers as needed */
-  }
-  
-  .Quiz_layout_component{
-    margin: 0;
-    background-color: aqua;
-  }
-  .container{
-    border: 5px solid #000;
-  }
+  max-width: 50px;
+  margin-left: 10px;
+ margin: 0 auto;
+}
 
-  .YEh_hai_sumbit_button{
-    min-height: 2%;
-    background-color: rgb(229, 229, 237);
-    align-items: center;
-    color: rgb(16, 15, 15);
-    border: 4px solid black;
-  }
-  h4{
-    /* border: 4px solid rgb(214, 9, 9); */
-    
-    max-width: 50px;
-    margin-left: 10px;
-   margin: 0 auto;
-  }
+.is_mai_prev_next_btn_hai{
+  display: flex;
+  justify-content: space-between;
+}
+.is_mai_prev_next_btn_hai_prev,.is_mai_prev_next_btn_hai_next {
+  background-color: deeppink;
+  margin: 1% 1%;
+  border: 2px solid red;
+} 
+.EK_question_dikhana_hai{
+/* background-color: darkcyan; */
+padding: 14px;
+}
+.option_hai{
+background-color: #f4f0f0;
+border: 1px solid black;
+margin: 6px;
+padding: 4px;
+}
 
-  .is_mai_prev_next_btn_hai{
-    display: flex;
-    justify-content: space-between;
-  }
-  .is_mai_prev_next_btn_hai_prev,.is_mai_prev_next_btn_hai_next {
-    background-color: deeppink;
-    margin: 1% 1%;
-    border: 2px solid red;
-  } 
- .EK_question_dikhana_hai{
-  /* background-color: darkcyan; */
-  padding: 14px;
- }
- .option_hai{
-  background-color: #f4f0f0;
-  border: 1px solid black;
-  margin: 6px;
-  padding: 4px;
- }
+.option_hai_select{
+background-color: rgb(82, 244, 23);
+}
 
- .option_hai_select{
-  background-color: rgb(82, 244, 23);
- }
-
- .result-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
+.result-table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
 }
 
 .result-table th, .result-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+border: 1px solid #ddd;
+padding: 8px;
+text-align: left;
 }
 
 .result-table th {
-  background-color: #f2f2f2;
+background-color: #f2f2f2;
 }
 
 .result-table .correct {
-  background-color: #c8e6c9; /* Light green for correct answers */
+background-color: #c8e6c9; /* Light green for correct answers */
 }
 
 .result-table .incorrect {
-  background-color: #ffcdd2; /* Light red for incorrect answers */
+background-color: #ffcdd2; /* Light red for incorrect answers */
 }

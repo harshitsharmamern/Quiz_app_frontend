@@ -14,10 +14,7 @@ import './css/Quiz_layout.css'
 
 const Quiz_layout = () => {
 
-  // const { quizid } = useParams();
   
-
-  // console.log(quizid);
   return (
     <>
       <QuizContextProvider>

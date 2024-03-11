@@ -21,6 +21,7 @@ import QuestionList from './components/QuizComponent/QuizComponent/QuestionList'
 import QuizStart from './components/QuizComponent/QuizComponent/QuizStart';
 import QuizResult from './components/QuizComponent/QuizComponent/QuizResult';
 import { QuizQuestionContext } from './components/QuizComponent/QuizComponent/QuizQuestionContext';
+import { TimerProvider } from './components/QuizComponent/Quizcontext/TimerContext';
 function App() {
   return (
     <>
@@ -45,7 +46,7 @@ function App() {
 
         <QuizQuestionContext>
           <Routes>
-          <Route exact path="/Quiz/:quizid" index element={<Quiz_layout />} />
+            <Route exact path="/Quiz/:quizid" index element={<Quiz_layout />} />
             <Route exact path="/Quiz/:quizid/start" index element={<QuestionList />} />
             <Route exact path="/:quizid/user-result" index element={<QuizResult />} />
             <Route path="*" element={<DefaultComponent />} />
