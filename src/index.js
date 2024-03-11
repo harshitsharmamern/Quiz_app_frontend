@@ -4,9 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 ///////////
-import { Provider } from 'react-redux';
-// import store from '../src/components/todoapp/Redux/Store';
-// import store from './components/todoapp/Redux/Store';
+
 
 
 

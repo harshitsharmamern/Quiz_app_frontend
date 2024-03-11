@@ -1,6 +1,5 @@
 import Navbar from '../common/Navbar'
 import React, { useEffect, } from 'react'
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AllQuiz from '../HomeComponent/AllQuiz';
 import LeaderBoard from '../HomeComponent/LeaderBoard';
