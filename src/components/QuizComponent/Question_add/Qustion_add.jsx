@@ -132,7 +132,8 @@ const Qustion_add = () => {
       toast.warn("quiz name must be greater than = 3", {
         autoClose: 2000,
         pauseOnHover: false,
-      });
+        
+      }); return 
     }
     else if (quizData.topic.length < 3) {
       toast.warn("topic name must be greater than = 3", {
@@ -151,6 +152,7 @@ const Qustion_add = () => {
           pauseOnHover: false,
           
         });
+        return
       }
 
       Object.keys(q.options).forEach((op, oindex) => {
@@ -160,17 +162,17 @@ const Qustion_add = () => {
           toast.warn(`Option ${oindex + 1} of question ${index + 1} is missing`, {
             autoClose: 2000,
             pauseOnHover: false,
-          });
+          }); return
         }
       });
     });
 
-    
-    if(!flag)
+    // console.log(quizData);
+    // console.log("here");
+    if(flag)
     try {
       // const server = 'https://quiz-app-backend-g0rh.onrender.com'
       // baseUrl
-
       const response = await fetch(`${baseUrl}/api/auth/add-quiz`, {
         method: 'POST',
         headers: {
@@ -180,12 +182,16 @@ const Qustion_add = () => {
       });
       // console.log(res);
       const res = await response.json(); // Await the parsing of response JSON
+      console.log(res);
       if (res.status) {
         console.log('Quiz added successfully');
-        window.location.reload();
-        toast.success('Quiz Add successfuly!', {
-          autoClose: 3000,
+        setTimeout(()=>{
 
+          window.location.reload();
+        },1000)
+        toast.success('Quiz Add successfuly!', {
+          autoClose: 2000,
+          
           style: {
             background: 'green', // Set the background color to red
             color: 'white', // Set the text color to white
